@@ -30,7 +30,9 @@ Reflex site generators with prebuilt themes
 
 to start studio:
 
-> yarn start
+```
+% yarn start
+```
 
 then visit:
 
@@ -41,19 +43,23 @@ http://localhost:3000
 
 - dependencies install:
 
-> % yarn
+```
+% yarn
+```
 
 - start one of these themes:
 
-> % yarn workspace reflex-starter-base start
-> % yarn workspace reflex-starter-biz start
-> % yarn workspace reflex-starter-blog start
-> % yarn workspace reflex-starter-bost start
-> % yarn workspace reflex-starter-expe start
-> % yarn workspace reflex-starter-hero start
-> % yarn workspace reflex-starter-vdes start
-> % yarn workspace reflex-starter-vdrc start
-> % yarn workspace reflex-starter-acdm start
+```
+% yarn workspace reflex-starter-base start
+% yarn workspace reflex-starter-biz start
+% yarn workspace reflex-starter-blog start
+% yarn workspace reflex-starter-bost start
+% yarn workspace reflex-starter-expe start
+% yarn workspace reflex-starter-hero start
+% yarn workspace reflex-starter-vdes start
+% yarn workspace reflex-starter-vdrc start
+% yarn workspace reflex-starter-acdm start
+```
 
 then visit:
 
