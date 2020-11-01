@@ -1,0 +1,61 @@
+/**
+ * reflex studio site generator server
+ * @2020/10/29
+ */
+const path = require('path')
+const dirTree = require("directory-tree")
+
+const { fileToBuffer, zipBufferGen } = require('./utils')
+
+
+const port = 3000
+
+const express = require('express')
+const app = express()
+
+
+app.use(require('body-parser').json());
+app.use(express.static(path.join(__dirname, '../static')));
+app.use(express.static(path.join(__dirname, '../library')));
+app.use(express.static(path.join(__dirname, '../starters')));
+
+
+
+// TODO: accept client parameters to create a customizes reflex site
+// app.post('/reflexgen', (req, res) => {
+  
+// })
+
+app.get('/viewstarter', (req, res) => {
+  let themeFolder = 'reflex-starter-acdm'
+  if(req.params.starter) themeFolder = req.params.starter
+  console.log('>>> read the starter folder: '+themeFolder)
+  const tree = dirTree(`../starters/${themeFolder}`);
+  res.json(tree) // JUST FOR TEST
+})
+
+app.get('/reflexgen.zip', (req, res) => {
+  const themeFolder = 'reflex-starter-acdm'
+  const zip = zipBufferGen(themeFolder)
+  zip.generateAsync({type:"nodebuffer"})
+    .then(function(content) {
+        // send blob to browser
+        res.send(content)
+    });
+})
+
+app.get('/sample.zip', (req, res) => {
+  fileToBuffer(__dirname + '/sample.zip', (err, buf) => {
+    if(err) return res.send('Oops...something wrong!')
+
+    res.send(buf)
+  })
+})
+
+app.get('/hello', (req, res) => {
+  res.send('world!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})

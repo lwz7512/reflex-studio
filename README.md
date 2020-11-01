@@ -26,12 +26,18 @@ Reflex site generators with prebuilt themes
 - [node](https://nodejs.org/en/), 
 - [yarn command tool](https://yarnpkg.com/getting-started/install) 
 
+then install dependencies by:
+
+```
+% yarn
+```
+
 ## Usage
 
 to start studio:
 
 ```
-% yarn start
+% yarn workspace server start
 ```
 
 then visit:
@@ -41,13 +47,19 @@ http://localhost:3000
 
 ## Development
 
-- dependencies install:
+- to start app(frontend) development server:
 
 ```
-% yarn
+% yarn workspace app start
 ```
 
-- start one of these themes:
+- to build app(frontend) into static folder:
+
+```
+% yarn workspace app build
+```
+
+- to start one of these themes:
 
 ```
 % yarn workspace reflex-starter-base start

@@ -7,7 +7,9 @@
   "author": "lwz7512@gmail.com",
   "license": "ISC",
   "workspaces": [
-    "starters/*"
+    "starters/*",
+    "app",
+    "server"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
