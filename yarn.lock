@@ -1736,7 +1736,7 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
-"@reflexjs/components@^0.3.2":
+"@reflexjs/components@0.3.2", "@reflexjs/components@^0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@reflexjs/components/-/components-0.3.2.tgz#7c1b22d96bd788ad95a97215d3649717b7496318"
   integrity sha512-be0p963nf4XJ/fq2yH3i9sx3wTuAwrSwyqF0QD6CI1hXUEiG98PWKblYnoqoZCGV5H+8x+pDnD9D1Vnzi6i35w==

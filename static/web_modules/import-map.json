@@ -1,6 +1,11 @@
 {
   "imports": {
+    "@reflexjs/components": "./@reflexjs/components.js",
+    "@reflexjs/preset-base": "./@reflexjs/preset-base.js",
+    "@reflexjs/ui": "./@reflexjs/ui.js",
+    "file-saver": "./file-saver.js",
     "react": "./react.js",
-    "react-dom": "./react-dom.js"
+    "react-dom": "./react-dom.js",
+    "theme-ui": "./theme-ui.js"
   }
 }

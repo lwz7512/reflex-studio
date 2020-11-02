@@ -19,12 +19,22 @@ app.use(express.static(path.join(__dirname, '../static')));
 app.use(express.static(path.join(__dirname, '../library')));
 app.use(express.static(path.join(__dirname, '../starters')));
 
+// https://masteringjs.io/tutorials/express/redirect
+app.post('/starter.zip', (req, res) => {
+  res.redirect(307, '/reflexgen.zip');
+});
 
-
-// TODO: accept client parameters to create a customizes reflex site
-// app.post('/reflexgen', (req, res) => {
-  
-// })
+// accept client parameters to create a customized reflex site
+app.post('/reflexgen.zip', (req, res) => {
+  const params = req.body
+  const themeFolder = params.starter
+  const zip = zipBufferGen(themeFolder)
+  zip.generateAsync({type:"nodebuffer"})
+    .then(function(content) {
+        // send blob to browser
+        res.send(content)
+    });
+})
 
 app.get('/viewstarter', (req, res) => {
   let themeFolder = 'reflex-starter-acdm'

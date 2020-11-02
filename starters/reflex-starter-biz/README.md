@@ -1,31 +1,29 @@
 # reflex-starter-biz
 
-This is the reflex starter with business page
+This is the biz theme for kicking off your Gatsby project with Reflex. 
+
+
+## Prerequisites
+
+2 tools installed beforehand:
+
+- [node](https://nodejs.org/en/), 
+- [yarn command tool](https://yarnpkg.com/getting-started/install) 
+
+while downloaded this theme zip file, extract it , then install dependencies by:
+
+```
+% cd reflex-starter-acdm
+% yarn
+```
+
 
 ## Getting Started
 
 ```sh
-gatsby new site reflexjs/gatsby-starter-base
+yarn start
 ```
 
-## Helpful links
+then visit:
 
-- [Add a page](https://reflexjs.org/docs/pages)
-- [Add a block and use it on a page](https://reflexjs.org/docs/pages-block)
-- [Create a block that can accept props](https://reflexjs.org/docs/pages-dynamic-block)
-- [Add a blog author](https://reflexjs.org/docs/blog-author)
-- [Create a blog post](https://reflexjs.org/docs/blog-post)
-- [Customize the theme](https://reflexjs.org/docs/theming-create-theme)
-- [Add a nav](https://reflexjs.org/docs/navs#add-a-nav)
-
-## Learn
-
-Visit [https://reflexjs.org/learn](https://reflexjs.org/learn) to get started with Gatsby and Reflex.
-
-## Blocks
-
-Browse the blocks library at [https://reflexjs.org/library/blocks](https://reflexjs.org/library/blocks).
-
-## License
-
-Licensed under the [MIT license](https://github.com/reflexjs/reflex/blob/master/LICENSE).
+http://localhost:8000

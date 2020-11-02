@@ -1,54 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Section, Container, Grid, Flexbox, H1, P, Button, Img,
+  Section, Container, Grid, Flexbox, H1, H2, P, Button, Img,
 } from "@reflexjs/ui"
 
 import FileSaver from 'file-saver';
 import logo from './Reflex-Studio.png';
+import { Card } from './Studio'
+import { starters } from './starters'
+import { Ul, Li } from '@reflexjs/components';
+
 
 function App() {
 
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  const [dnlding, setDnlding] = useState(false);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
+  const [themePlaceholder, setThemePlaceholder] = useState('placeholder2.jpg');
 
-  const downloadZip = () => {
-    // console.log('>>> to fetch zip ...')
-    setDnlding(true)
-    
-    fetch('/starter.zip').then(function(response) {
-      return response.blob();
-    }).then(function(blob) {
-      FileSaver.saveAs(blob, "reflex-starter.zip")
-      setDnlding(false)
-    });
+
+  const loadThemePreview = url => {
+    setThemePlaceholder(url)
   }
 
 
   // Return the App component.
   return (
-    <Section py="8|12|16|24">
+    <Section py="1|2|4|6">
       <Container>
-        <Grid col="1|2" gap="8|12|16" alignItems="center">
-          <Flexbox flexDirection="column" alignItems="center"  >
-            <Img src={logo} w="full" />
-            <P fontSize="xl|2xl" mt="2">
+        <Grid col="1|2|3" gap="4|6|8" >
+          {/* left column */}
+          <Flexbox flexDirection="column" 
+            alignItems="flex-start" 
+            borderRight="1" >
+            <Img src={logo} w="80%" />
+            <P fontSize="md|l" mt="6" color="#666" w="80%" textAlign="center">
               Dev Experience Matters!
             </P>
-            <Button as="button"
-              {...(dnlding?{disabled:true, variant: 'accent'}:{variant: 'primary'})}
-              >
-              {dnlding ? 'Generate starter...' : 'Download Starter' }
-            </Button>
+            <P fontSize="1rem" width="200" textAlign="center" >@RCL</P>
+            {/* use guide */}
+            <Ul paddingInlineStart="10">
+              <Li>Step 1: Choose primary color</Li>
+              <Li>Step 2: Choose theme type</Li>
+              <Li>Step 3: Download theme zip file</Li>
+              <Li>Step 4: Extract theme zip file</Li>
+              <Li>Step 5: Enter theme folder</Li>
+              <Li>Step 6: Install dependency</Li>
+              <Li>Step 7: Start website with yarn</Li>
+            </Ul>
+            <P fontSize="sm" p="2" mr="20"
+              backgroundColor="#EEE" color="#666"
+              borderRadius="4">
+            Fore More details, Checkout the README.md in the theme zip file downloaded.
+            </P>
           </Flexbox>
-          <H1 m="0" fontWeight="black" lineHeight="tight">
-             TODO ... 
-          </H1>
+          {/* middle column */}
+          <Flexbox flexDirection="column" 
+            alignItems="flex-start" 
+            h="650px"
+            overflowY="scroll"
+            >
+            {
+              starters.map((theme, i) => (
+                <Card
+                  key={i}
+                  title={theme.title}
+                  description={theme.description}
+                  link={theme.link}
+                  screenshot={theme.screenshot}
+                  onPreview={loadThemePreview}
+                />
+              ))
+            }
+          </Flexbox>
+          {/* right column */}
+          <Flexbox flexDirection="column" alignItems="flex-start">
+            <Img src={themePlaceholder} w="full" />
+          </Flexbox>
         </Grid>
       </Container>
     </Section>
