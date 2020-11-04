@@ -56,7 +56,7 @@ Utils.zipBufferGen = (themeFolder, params) => {
         const data = fs.readFileSync(child.path); 
         zipRoot.file(child.path.substr(12), data) // create file in zip
       }
-      if(child.type == 'directory' && child.name != 'node_modules'){
+      if(child.type == 'directory' && child.name != 'node_modules' && child.name != 'public'){
         walkTree(child, zipRoot) // iterate child
       }
     })

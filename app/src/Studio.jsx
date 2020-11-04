@@ -8,7 +8,53 @@ import {
   Button, Container, Grid, Section, Img,
   H1, H2, P, Strong, Div, Span, Figure, A,
 } from "@reflexjs/components"
+import { Radio, Label } from 'theme-ui'
 
+
+
+export const ColorOptions = ({onChange}) => {
+  const colors = [
+    {name: 'DEFAULT', color: '#06f'},
+    {name: 'RED',     color: '#f44336'},
+    {name: 'PINK',    color: '#e91e63'},
+    {name: 'PURPLE',  color: '#9c27b0'},
+    {name: 'INDIGO',  color: '#3f51b5'},
+    {name: 'BLUE',    color: '#2196f3'},
+    {name: 'CYAN',    color: '#00bcd4'},
+    {name: 'GREEN',   color: '#4caf50'},
+    {name: 'LIME',    color: '#cddc39'},
+    {name: 'YELLOW',  color: '#ffeb3b'},
+    {name: 'ORANGE',  color: '#ff9800'},
+    {name: 'BROWN',   color: '#795548'},
+    {name: 'BLUGREY', color: '#607d8b'}
+  ]
+
+  const [options, setOptions] = useState(colors);
+  const [colorType, setColorType] = useState('DEFAULT');
+
+  const optionChangeHandler = evt => {
+    setColorType(evt.currentTarget.value)
+    if(onChange) onChange(evt.currentTarget.value)
+  }
+
+  return (
+    <>
+      {
+        options.map((c, i) => (
+          <Label key={i} style={{borderBottom:'1px solid #EEE', marginBottom: 10}} >
+              <Radio
+                name='color-mode'
+                value={c.name}
+                checked={colorType == c.name}
+                onChange={optionChangeHandler}
+              />
+              <Span w="6" h="6" bg={c.color} mr="4" ></Span>{c.name}
+            </Label>
+        ))
+      }
+    </>
+  )
+}
 
 export const Card = ({ image, title, description, link, screenshot, onPreview, ...props }) => {
 
@@ -16,8 +62,7 @@ export const Card = ({ image, title, description, link, screenshot, onPreview, .
   // const [preview, setPreview] = useState(screenshot);
 
   const displayPreview = () => {
-    // console.log(screenshot)
-    if(onPreview) onPreview(screenshot)
+    if(onPreview) onPreview(link)
   }
 
   const downloadZip = () => {

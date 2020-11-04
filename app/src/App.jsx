@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Section, Container, Grid, Flexbox, H1, H2, P, Button, Img,
+  Section, Container, Grid, Flexbox, H1, H2, H3, P, Button, Img, Span,
 } from "@reflexjs/ui"
-
-import FileSaver from 'file-saver';
-import logo from './Reflex-Studio.png';
-import { Card } from './Studio'
-import { starters } from './starters'
 import { Ul, Li } from '@reflexjs/components';
+import FileSaver from 'file-saver';
+
+import logo from './Reflex-Studio.png';
+import { Card, ColorOptions } from './Studio'
+import { starters } from './starters'
 
 
 function App() {
 
-  const [themePlaceholder, setThemePlaceholder] = useState('placeholder2.jpg');
+  const staticContext = 'http://localhost:3000'
+  const themePath = staticContext+'/shots/reflex-starter-base-DEFAULT.png'
+
+  const [color, setColor] = useState('DEFAULT');
+  const [starter, setStarter] = useState('reflex-starter-base');
+  const [themePreviewPath, setThemePreviewPath] = useState(themePath);
 
 
-  const loadThemePreview = url => {
-    setThemePlaceholder(url)
+  const loadThemePreview = theme => {
+    setStarter(theme)
+    setThemePreviewPath(staticContext+'/shots/'+theme+'-'+color+'.png')
   }
 
+  const colorChangeHandler = v => {
+    setColor(v)
+    setThemePreviewPath(staticContext+'/shots/'+starter+'-'+v+'.png')
+  }
 
   // Return the App component.
   return (
@@ -47,7 +57,7 @@ function App() {
             <P fontSize="sm" p="2" mr="20"
               backgroundColor="#EEE" color="#666"
               borderRadius="4">
-            Fore More details, Checkout the README.md in the theme zip file downloaded.
+              Fore More details, Checkout the README.md in the theme zip file downloaded.
             </P>
           </Flexbox>
           {/* middle column */}
@@ -56,6 +66,10 @@ function App() {
             h="650px"
             overflowY="scroll"
             >
+            {/* color picker */}
+            <H3 marginBlockStart="8" >Step 1: select color</H3>
+            <ColorOptions onChange={colorChangeHandler} />
+            <H3>Step 2: select theme</H3>
             {
               starters.map((theme, i) => (
                 <Card
@@ -71,7 +85,7 @@ function App() {
           </Flexbox>
           {/* right column */}
           <Flexbox flexDirection="column" alignItems="flex-start">
-            <Img src={themePlaceholder} w="full" />
+            <Img src={themePreviewPath} w="full" />
           </Flexbox>
         </Grid>
       </Container>

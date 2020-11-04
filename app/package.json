@@ -16,7 +16,8 @@
     "@reflexjs/ui": "0.4.3",
     "@reflexjs/components": "0.3.2",
     "@reflexjs/preset-base": "0.3.0",
-    "file-saver": "2.0.2"
+    "file-saver": "2.0.2",
+    "react-spinners":"0.9.0"
   },
   "devDependencies": {
     "@snowpack/plugin-dotenv": "^2.0.4",
