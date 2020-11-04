@@ -15,11 +15,50 @@ import {
   Figure,
   A
 } from "../web_modules/@reflexjs/components.js";
+import {Radio, Label} from "../web_modules/theme-ui.js";
+export const ColorOptions = ({onChange}) => {
+  const colors = [
+    {name: "DEFAULT", color: "#06f"},
+    {name: "RED", color: "#f44336"},
+    {name: "PINK", color: "#e91e63"},
+    {name: "PURPLE", color: "#9c27b0"},
+    {name: "INDIGO", color: "#3f51b5"},
+    {name: "BLUE", color: "#2196f3"},
+    {name: "CYAN", color: "#00bcd4"},
+    {name: "GREEN", color: "#4caf50"},
+    {name: "LIME", color: "#cddc39"},
+    {name: "YELLOW", color: "#ffeb3b"},
+    {name: "ORANGE", color: "#ff9800"},
+    {name: "BROWN", color: "#795548"},
+    {name: "BLUGREY", color: "#607d8b"}
+  ];
+  const [options, setOptions] = useState(colors);
+  const [colorType, setColorType] = useState("DEFAULT");
+  const optionChangeHandler = (evt) => {
+    setColorType(evt.currentTarget.value);
+    if (onChange)
+      onChange(evt.currentTarget.value);
+  };
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, options.map((c, i) => /* @__PURE__ */ React.createElement(Label, {
+    key: i,
+    style: {borderBottom: "1px solid #EEE", marginBottom: 10}
+  }, /* @__PURE__ */ React.createElement(Radio, {
+    name: "color-mode",
+    value: c.name,
+    checked: colorType == c.name,
+    onChange: optionChangeHandler
+  }), /* @__PURE__ */ React.createElement(Span, {
+    w: "6",
+    h: "6",
+    bg: c.color,
+    mr: "4"
+  }), c.name)));
+};
 export const Card = ({image, title, description, link, screenshot, onPreview, ...props}) => {
   const [dnlding, setDnlding] = useState(false);
   const displayPreview = () => {
     if (onPreview)
-      onPreview(screenshot);
+      onPreview(link);
   };
   const downloadZip = () => {
     setDnlding(true);

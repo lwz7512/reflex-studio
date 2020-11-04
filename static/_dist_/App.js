@@ -6,19 +6,30 @@ import {
   Flexbox,
   H1,
   H2,
+  H3,
   P,
   Button,
-  Img
+  Img,
+  Span
 } from "../web_modules/@reflexjs/ui.js";
+import {Ul, Li} from "../web_modules/@reflexjs/components.js";
 import FileSaver from "../web_modules/file-saver.js";
 import logo from "./Reflex-Studio.png.proxy.js";
-import {Card} from "./Studio.js";
+import {Card, ColorOptions} from "./Studio.js";
 import {starters as starters2} from "./starters.js";
-import {Ul, Li} from "../web_modules/@reflexjs/components.js";
 function App() {
-  const [themePlaceholder, setThemePlaceholder] = useState("placeholder2.jpg");
-  const loadThemePreview = (url) => {
-    setThemePlaceholder(url);
+  const staticContext = "http://localhost:3000";
+  const themePath = staticContext + "/shots/reflex-starter-base-DEFAULT.png";
+  const [color, setColor] = useState("DEFAULT");
+  const [starter, setStarter] = useState("reflex-starter-base");
+  const [themePreviewPath, setThemePreviewPath] = useState(themePath);
+  const loadThemePreview = (theme) => {
+    setStarter(theme);
+    setThemePreviewPath(staticContext + "/shots/" + theme + "-" + color + ".png");
+  };
+  const colorChangeHandler = (v) => {
+    setColor(v);
+    setThemePreviewPath(staticContext + "/shots/" + starter + "-" + v + ".png");
   };
   return /* @__PURE__ */ React.createElement(Section, {
     py: "1|2|4|6"
@@ -51,12 +62,16 @@ function App() {
     backgroundColor: "#EEE",
     color: "#666",
     borderRadius: "4"
-  }, "Fore More details, Checkout the README.md in the theme zip downloaded.")), /* @__PURE__ */ React.createElement(Flexbox, {
+  }, "Fore More details, Checkout the README.md in the theme zip file downloaded.")), /* @__PURE__ */ React.createElement(Flexbox, {
     flexDirection: "column",
     alignItems: "flex-start",
     h: "650px",
     overflowY: "scroll"
-  }, starters2.map((theme, i) => /* @__PURE__ */ React.createElement(Card, {
+  }, /* @__PURE__ */ React.createElement(H3, {
+    marginBlockStart: "8"
+  }, "Step 1: select color"), /* @__PURE__ */ React.createElement(ColorOptions, {
+    onChange: colorChangeHandler
+  }), /* @__PURE__ */ React.createElement(H3, null, "Step 2: select theme"), starters2.map((theme, i) => /* @__PURE__ */ React.createElement(Card, {
     key: i,
     title: theme.title,
     description: theme.description,
@@ -67,7 +82,7 @@ function App() {
     flexDirection: "column",
     alignItems: "flex-start"
   }, /* @__PURE__ */ React.createElement(Img, {
-    src: themePlaceholder,
+    src: themePreviewPath,
     w: "full"
   })))));
 }

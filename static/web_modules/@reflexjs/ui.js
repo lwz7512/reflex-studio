@@ -1,4 +1,4 @@
-import { j as jsx$1, u as useThemeUI, i as index } from '../common/is-prop-valid.browser.esm-a048b73e.js';
+import { j as jsx$1, u as useThemeUI, i as index } from '../common/is-prop-valid.browser.esm-88134ee1.js';
 import '../common/_commonjsHelpers-eb5a497e.js';
 import { r as react } from '../common/index-e4252562.js';
 
@@ -598,9 +598,11 @@ var getTag = function getTag(tag, componentProps, __themeKey) {
 var Button = getTag("button");
 var H1 = getTag("h1");
 var H2 = getTag("h2");
+var H3 = getTag("h3");
 var Img = getTag("img");
 var P = getTag("p");
 var Section = getTag("section");
+var Span = getTag("span");
 
 var Container = getTag("div", {
   mx: "auto"
@@ -612,4 +614,4 @@ var Grid = getTag("div", {
   d: "grid"
 }, "grid");
 
-export { Button, Container, Flexbox, Grid, H1, H2, Img, P, Section };
+export { Button, Container, Flexbox, Grid, H1, H2, H3, Img, P, Section, Span };

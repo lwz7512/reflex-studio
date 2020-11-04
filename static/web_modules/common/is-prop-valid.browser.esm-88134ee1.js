@@ -1263,6 +1263,14 @@ var serializeStyles = function serializeStyles(args, registered, mergedProps) {
   };
 };
 
+function css() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  return serializeStyles(args);
+}
+
 var EmotionCacheContext = react.createContext( // we're doing this to avoid preconstruct's dead code elimination in this one case
 // because this module is primarily intended for the browser and node
 // but it's also required in react native and similar environments sometimes
@@ -1459,6 +1467,20 @@ function (_React$Component) {
 
   return InnerGlobal;
 }(react.Component);
+
+var keyframes = function keyframes() {
+  var insertable = css.apply(void 0, arguments);
+  var name = "animation-" + insertable.name; // $FlowFixMe
+
+  return {
+    name: name,
+    styles: "@keyframes " + name + "{" + insertable.styles + "}",
+    anim: 1,
+    toString: function toString() {
+      return "_EMO_" + this.name + "_" + this.styles + "_EMO_";
+    }
+  };
+};
 
 var classnames = function classnames(args) {
   var len = args.length;
@@ -1725,7 +1747,7 @@ var responsive = function (styles) { return function (theme) {
   return next;
 }; };
 
-var css = function (args) { return function (props) {
+var css$1 = function (args) { return function (props) {
   if ( props === void 0 ) props = {};
 
   var theme = Object.assign({}, defaultTheme,
@@ -1739,14 +1761,14 @@ var css = function (args) { return function (props) {
     var val = typeof x === 'function' ? x(theme) : x;
 
     if (key === 'variant') {
-      var variant = css(get(theme, val))(theme);
+      var variant = css$1(get(theme, val))(theme);
       result = Object.assign({}, result,
         variant);
       continue;
     }
 
     if (val && typeof val === 'object') {
-      result[key] = css(val)(theme);
+      result[key] = css$1(val)(theme);
       continue;
     }
 
@@ -1907,7 +1929,7 @@ const version = "10.0.35";
 var getCSS = function (props) {
   if (!props.sx && !props.css) { return undefined; }
   return function (theme) {
-    var styles = css(props.sx)(theme);
+    var styles = css$1(props.sx)(theme);
     var raw = typeof props.css === 'function' ? props.css(theme) : props.css;
     return [styles, raw];
   };
@@ -2003,4 +2025,4 @@ var index = memoize(function (prop) {
 /* Z+1 */
 );
 
-export { Context as C, Global as G, ThemeContext as T, getRegisteredStyles as a, insertStyles as b, css as c, ThemeProvider as d, get as g, index as i, jsx$1 as j, merge$1 as m, serializeStyles as s, useThemeUI as u, withEmotionCache as w };
+export { Context as C, Global as G, ThemeContext as T, getRegisteredStyles as a, insertStyles as b, css$1 as c, ThemeProvider as d, memoize as e, get as g, index as i, jsx$1 as j, keyframes as k, merge$1 as m, serializeStyles as s, useThemeUI as u, withEmotionCache as w };
