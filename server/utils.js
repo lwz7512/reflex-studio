@@ -39,8 +39,14 @@ Utils.fileToBuffer = (filename, cb) => {
   });
 }
 
+/**
+ * zip starter folder and replace some colors and metadata in theme/config files
+ * 
+ * themeFolder, string;
+ * params, { primaryColor, primaryHoverColor }
+ */
 Utils.zipBufferGen = (themeFolder, params) => {
-  console.log('>>> read the starter folder ...')
+  // console.log('>>> read the starter folder ...')
   const tree = dirTree(`../starters/${themeFolder}`);
   // res.json(tree) // JUST FOR TEST
   const zip = new JSZip()
@@ -51,11 +57,29 @@ Utils.zipBufferGen = (themeFolder, params) => {
 
     let children = tree.children
     children.forEach(child => {
-      if(child.type == 'file'){
+      // write normal file
+      if(child.type == 'file' && child.name != 'theme.js'){
         // console.log(`got file: ${child.path}`)
-        const data = fs.readFileSync(child.path); 
+        let data = fs.readFileSync(child.path)
         zipRoot.file(child.path.substr(12), data) // create file in zip
       }
+      // replace theme colors in memory for theme.js
+      if(child.name == 'theme.js'){
+        // console.log('>>> got theme.js, to replace colors...')
+        let lines = fs.readFileSync(child.path, 'utf8').split('\n')
+        let newPrimary = params.primaryColor || '#06f'
+        let newPrimaryHover = params.primaryHoverColor || '#005ae0'
+        lines.forEach((line, i) => {
+          if(line.includes('primary:') && !line.includes('{')){
+            lines[i] = `    primary: "${newPrimary}",`
+          }
+          if(line.includes('primaryHover:')){
+            lines[i] = `    primaryHover: "${newPrimaryHover}",`
+          }
+        })
+        zipRoot.file(child.path.substr(12), lines.join('\n')) // create theme.js in zip
+      }
+      // iterate constantly...
       if(child.type == 'directory' && child.name != 'node_modules' && child.name != 'public'){
         walkTree(child, zipRoot) // iterate child
       }

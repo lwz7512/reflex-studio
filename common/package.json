@@ -1,0 +1,14 @@
+{
+  "name": "common",
+  "version": "1.0.0",
+  "description": "config data used in both app and server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "config"
+  ],
+  "author": "lwz7512@gmail.com",
+  "license": "ISC"
+}

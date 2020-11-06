@@ -1,5 +1,5 @@
 /**
- * studeo components
+ * studio components
  * @2020/11/01
  */
 import React, { useState } from 'react'
@@ -9,7 +9,12 @@ import {
   H1, H2, P, Strong, Div, Span, Figure, A,
 } from "@reflexjs/components"
 import { Radio, Label } from 'theme-ui'
+import { themeColorMap } from 'common'
 
+
+const global_config = {
+  COLOR_TYPE : 'DEFAULT',
+}
 
 
 export const ColorOptions = ({onChange}) => {
@@ -35,6 +40,8 @@ export const ColorOptions = ({onChange}) => {
   const optionChangeHandler = evt => {
     setColorType(evt.currentTarget.value)
     if(onChange) onChange(evt.currentTarget.value)
+    // remember change
+    global_config.COLOR_TYPE = evt.currentTarget.value
   }
 
   return (
@@ -69,8 +76,11 @@ export const Card = ({ image, title, description, link, screenshot, onPreview, .
     // console.log('>>> to fetch zip ...')
     setDnlding(true)
     
+    const colors = themeColorMap[global_config.COLOR_TYPE]
     const data = {
       starter : link,
+      primaryColor: colors[0],
+      primaryHoverColor: colors[1]
     }
 
     fetch('/starter.zip', {

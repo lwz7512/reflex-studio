@@ -4,7 +4,7 @@ Reflex Studio
 
 Reflex site generators with prebuilt themes
 
-![screenshot](./static/reflex-stutdio-home-md.png)
+![screenshot](./static/screencapture-localhost-8080-2020-11-05-12_33_48-md.png)
 
 ## Starters - 9
 

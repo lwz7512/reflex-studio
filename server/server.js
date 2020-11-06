@@ -28,7 +28,7 @@ app.post('/starter.zip', (req, res) => {
 app.post('/reflexgen.zip', (req, res) => {
   const params = req.body
   const themeFolder = params.starter
-  const zip = zipBufferGen(themeFolder)
+  const zip = zipBufferGen(themeFolder, params)
   zip.generateAsync({type:"nodebuffer"})
     .then(function(content) {
         // send blob to browser
@@ -39,7 +39,7 @@ app.post('/reflexgen.zip', (req, res) => {
 app.get('/viewstarter', (req, res) => {
   let themeFolder = 'reflex-starter-acdm'
   if(req.params.starter) themeFolder = req.params.starter
-  console.log('>>> read the starter folder: '+themeFolder)
+  // console.log('>>> read the starter folder: '+themeFolder)
   const tree = dirTree(`../starters/${themeFolder}`);
   res.json(tree) // JUST FOR TEST
 })

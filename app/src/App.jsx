@@ -63,7 +63,7 @@ function App() {
           {/* middle column */}
           <Flexbox flexDirection="column" 
             alignItems="flex-start" 
-            h="650px"
+            h="850px"
             overflowY="scroll"
             >
             {/* color picker */}
