@@ -2,7 +2,7 @@
  * studio components
  * @2020/11/01
  */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import FileSaver from 'file-saver';
 import { 
   Button, Container, Grid, Section, Img,
@@ -10,12 +10,45 @@ import {
 } from "@reflexjs/components"
 import { Radio, Label } from 'theme-ui'
 import { themeColorMap } from 'common'
+import BeatLoader from 'react-spinners/BeatLoader'
 
 
 const global_config = {
   COLOR_TYPE : 'DEFAULT',
 }
 
+
+export const ThemePreviewer = ({src}) => {
+
+  const [loaded, setLoaded] = useState(false);
+
+  // ueh to create useEffect
+  useEffect(() => {
+    setLoaded(false)
+  
+    let mockImage = new Image();
+    mockImage.onload = function(){
+      setLoaded(true)
+    };
+    mockImage.src = src // load image into mockImage
+    
+  }, [src]);
+
+  if(!loaded) return (
+    <Container >
+      <BeatLoader
+        size={10}
+        color={"#123abc"}
+        loading={true}
+      />
+    </Container>
+  )
+
+  return (
+    <Img src={src} w="full"/>
+  )
+
+}
 
 export const ColorOptions = ({onChange}) => {
   const colors = [

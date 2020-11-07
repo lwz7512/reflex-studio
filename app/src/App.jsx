@@ -6,14 +6,12 @@ import { Ul, Li } from '@reflexjs/components';
 import FileSaver from 'file-saver';
 
 import logo from './Reflex-Studio.png';
-import { Card, ColorOptions } from './Studio'
+import { Card, ColorOptions, ThemePreviewer } from './Studio'
 import { starters } from './starters'
 
 
 function App() {
 
-  // const staticContext = 'http://localhost:3000'
-  // const themePath = staticContext+'/shots/reflex-starter-base-DEFAULT.png'
 
   const [color, setColor] = useState('DEFAULT');
   const [starter, setStarter] = useState('reflex-starter-base');
@@ -99,7 +97,7 @@ function App() {
           </Flexbox>
           {/* right column */}
           <Flexbox flexDirection="column" alignItems="flex-start">
-            <Img src={themePreviewPath} w="full" />
+            <ThemePreviewer src={themePreviewPath} />
           </Flexbox>
         </Grid>
       </Container>

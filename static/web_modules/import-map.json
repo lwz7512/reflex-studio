@@ -7,6 +7,7 @@
     "file-saver": "./file-saver.js",
     "react": "./react.js",
     "react-dom": "./react-dom.js",
+    "react-spinners/BeatLoader": "./react-spinners/BeatLoader.js",
     "theme-ui": "./theme-ui.js"
   }
 }

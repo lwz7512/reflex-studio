@@ -1,4 +1,4 @@
-import React, {useState} from "../web_modules/react.js";
+import React, {useState, useEffect} from "../web_modules/react.js";
 import FileSaver from "../web_modules/file-saver.js";
 import {
   Button,
@@ -17,8 +17,30 @@ import {
 } from "../web_modules/@reflexjs/components.js";
 import {Radio, Label} from "../web_modules/theme-ui.js";
 import {themeColorMap} from "../web_modules/common.js";
+import BeatLoader2 from "../web_modules/react-spinners/BeatLoader.js";
 const global_config = {
   COLOR_TYPE: "DEFAULT"
+};
+export const ThemePreviewer = ({src}) => {
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    setLoaded(false);
+    let mockImage = new Image();
+    mockImage.onload = function() {
+      setLoaded(true);
+    };
+    mockImage.src = src;
+  }, [src]);
+  if (!loaded)
+    return /* @__PURE__ */ React.createElement(Container, null, /* @__PURE__ */ React.createElement(BeatLoader2, {
+      size: 10,
+      color: "#123abc",
+      loading: true
+    }));
+  return /* @__PURE__ */ React.createElement(Img, {
+    src,
+    w: "full"
+  });
 };
 export const ColorOptions = ({onChange}) => {
   const colors = [

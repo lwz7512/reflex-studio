@@ -15,7 +15,7 @@ import {
 import {Ul, Li} from "../web_modules/@reflexjs/components.js";
 import FileSaver from "../web_modules/file-saver.js";
 import logo from "./Reflex-Studio.png.proxy.js";
-import {Card, ColorOptions} from "./Studio.js";
+import {Card, ColorOptions, ThemePreviewer} from "./Studio.js";
 import {starters as starters2} from "./starters.js";
 function App() {
   const [color, setColor] = useState("DEFAULT");
@@ -90,9 +90,8 @@ function App() {
   }))), /* @__PURE__ */ React.createElement(Flexbox, {
     flexDirection: "column",
     alignItems: "flex-start"
-  }, /* @__PURE__ */ React.createElement(Img, {
-    src: themePreviewPath,
-    w: "full"
+  }, /* @__PURE__ */ React.createElement(ThemePreviewer, {
+    src: themePreviewPath
   })))));
 }
 export default App;
