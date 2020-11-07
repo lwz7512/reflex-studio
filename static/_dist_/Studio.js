@@ -16,6 +16,10 @@ import {
   A
 } from "../web_modules/@reflexjs/components.js";
 import {Radio, Label} from "../web_modules/theme-ui.js";
+import {themeColorMap} from "../web_modules/common.js";
+const global_config = {
+  COLOR_TYPE: "DEFAULT"
+};
 export const ColorOptions = ({onChange}) => {
   const colors = [
     {name: "DEFAULT", color: "#06f"},
@@ -38,6 +42,7 @@ export const ColorOptions = ({onChange}) => {
     setColorType(evt.currentTarget.value);
     if (onChange)
       onChange(evt.currentTarget.value);
+    global_config.COLOR_TYPE = evt.currentTarget.value;
   };
   return /* @__PURE__ */ React.createElement(React.Fragment, null, options.map((c, i) => /* @__PURE__ */ React.createElement(Label, {
     key: i,
@@ -62,8 +67,11 @@ export const Card = ({image, title, description, link, screenshot, onPreview, ..
   };
   const downloadZip = () => {
     setDnlding(true);
+    const colors = themeColorMap[global_config.COLOR_TYPE];
     const data = {
-      starter: link
+      starter: link,
+      primaryColor: colors[0],
+      primaryHoverColor: colors[1]
     };
     fetch("/starter.zip", {
       method: "POST",

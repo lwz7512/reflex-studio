@@ -65,7 +65,7 @@ function App() {
   }, "Fore More details, Checkout the README.md in the theme zip file downloaded.")), /* @__PURE__ */ React.createElement(Flexbox, {
     flexDirection: "column",
     alignItems: "flex-start",
-    h: "650px",
+    h: "850px",
     overflowY: "scroll"
   }, /* @__PURE__ */ React.createElement(H3, {
     marginBlockStart: "8"

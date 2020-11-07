@@ -13,7 +13,9 @@
     "common"
   ],
   "scripts": {
-    "start": "concurrently --kill-others \"npm:start:*\"",
+    "build": "yarn workspace app build",
+    "start": "node server/server",
+    "dev": "concurrently --kill-others \"npm:start:*\"",
     "start:server": "yarn workspace server start",
     "start:app": "yarn workspace app start",
     "test": "echo \"Error: no test specified\" && exit 1"
