@@ -18,18 +18,27 @@ import logo from "./Reflex-Studio.png.proxy.js";
 import {Card, ColorOptions} from "./Studio.js";
 import {starters as starters2} from "./starters.js";
 function App() {
-  const staticContext = "http://localhost:3000";
-  const themePath = staticContext + "/shots/reflex-starter-base-DEFAULT.png";
   const [color, setColor] = useState("DEFAULT");
   const [starter, setStarter] = useState("reflex-starter-base");
-  const [themePreviewPath, setThemePreviewPath] = useState(themePath);
+  const [themePreviewPath, setThemePreviewPath] = useState("favicon.png");
+  useEffect(() => {
+    let themePath = getThemePath("reflex-starter-base", "DEFAULT");
+    setThemePreviewPath(themePath);
+  }, []);
+  const getThemePath = (theme, color2) => {
+    let currentContext = window.location.protocol + "//" + window.location.host;
+    const themePath = currentContext + "/shots/" + theme + "-" + color2 + ".png";
+    return themePath;
+  };
   const loadThemePreview = (theme) => {
     setStarter(theme);
-    setThemePreviewPath(staticContext + "/shots/" + theme + "-" + color + ".png");
+    let themePath = getThemePath(theme, color);
+    setThemePreviewPath(themePath);
   };
   const colorChangeHandler = (v) => {
     setColor(v);
-    setThemePreviewPath(staticContext + "/shots/" + starter + "-" + v + ".png");
+    let themePath = getThemePath(starter, v);
+    setThemePreviewPath(themePath);
   };
   return /* @__PURE__ */ React.createElement(Section, {
     py: "1|2|4|6"

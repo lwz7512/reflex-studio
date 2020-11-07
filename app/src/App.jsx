@@ -12,22 +12,36 @@ import { starters } from './starters'
 
 function App() {
 
-  const staticContext = 'http://localhost:3000'
-  const themePath = staticContext+'/shots/reflex-starter-base-DEFAULT.png'
+  // const staticContext = 'http://localhost:3000'
+  // const themePath = staticContext+'/shots/reflex-starter-base-DEFAULT.png'
 
   const [color, setColor] = useState('DEFAULT');
   const [starter, setStarter] = useState('reflex-starter-base');
-  const [themePreviewPath, setThemePreviewPath] = useState(themePath);
+  const [themePreviewPath, setThemePreviewPath] = useState('favicon.png');
 
+  useEffect(() => {
+    // load initial theme image
+    let themePath = getThemePath('reflex-starter-base', 'DEFAULT')
+    setThemePreviewPath(themePath)
+  }, [])
+
+
+  const getThemePath = (theme, color) => {
+    let currentContext = window.location.protocol + "//" + window.location.host
+    const themePath = currentContext+'/shots/'+theme+'-'+color+'.png'
+    return themePath
+  }
 
   const loadThemePreview = theme => {
     setStarter(theme)
-    setThemePreviewPath(staticContext+'/shots/'+theme+'-'+color+'.png')
+    let themePath = getThemePath(theme, color)
+    setThemePreviewPath(themePath)
   }
 
   const colorChangeHandler = v => {
     setColor(v)
-    setThemePreviewPath(staticContext+'/shots/'+starter+'-'+v+'.png')
+    let themePath = getThemePath(starter, v)
+    setThemePreviewPath(themePath)
   }
 
   // Return the App component.
