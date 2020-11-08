@@ -4,6 +4,7 @@
  */
 
 const fs = require('fs')
+const path = require('path')
 const dirTree = require("directory-tree")
 const JSZip = require("jszip");
 
@@ -46,8 +47,10 @@ Utils.fileToBuffer = (filename, cb) => {
  * params, { primaryColor, primaryHoverColor }
  */
 Utils.zipBufferGen = (themeFolder, params) => {
-  // console.log('>>> read the starter folder ...')
-  const tree = dirTree(`../starters/${themeFolder}`);
+  console.log(`>>> read the starter folder : ${themeFolder}`)
+  const folderPath = path.join(__dirname, `../starters/${themeFolder}`))
+  console.log(`>>> zip folderPath: ${folderPath}`)
+  const tree = dirTree(folderPath);
   // res.json(tree) // JUST FOR TEST
   const zip = new JSZip()
   const walkTree = function(tree, zipRoot){
