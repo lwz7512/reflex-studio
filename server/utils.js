@@ -48,7 +48,7 @@ Utils.fileToBuffer = (filename, cb) => {
  */
 Utils.zipBufferGen = (themeFolder, params) => {
   console.log(`>>> read the starter folder : ${themeFolder}`)
-  const folderPath = path.join(__dirname, `../starters/${themeFolder}`))
+  const folderPath = path.join(__dirname, `../starters/${themeFolder}`)
   console.log(`>>> zip folderPath: ${folderPath}`)
   const tree = dirTree(folderPath);
   // res.json(tree) // JUST FOR TEST
