@@ -1,6 +1,6 @@
-import { j as jsx$1, u as useThemeUI, i as index } from '../common/is-prop-valid.browser.esm-0e911ea7.js';
 import '../common/_commonjsHelpers-8c19dec8.js';
 import { r as react } from '../common/index-d9c98906.js';
+import { j as jsx$1, u as useThemeUI, i as index } from '../common/is-prop-valid.browser.esm-0e911ea7.js';
 import '../common/css.browser.esm-8f3047a1.js';
 
 function _extends() {
@@ -596,6 +596,7 @@ var getTag = function getTag(tag, componentProps, __themeKey) {
     }, props));
   });
 };
+var A = getTag("a");
 var Button = getTag("button");
 var H1 = getTag("h1");
 var H2 = getTag("h2");
@@ -615,4 +616,4 @@ var Grid = getTag("div", {
   d: "grid"
 }, "grid");
 
-export { Button, Container, Flexbox, Grid, H1, H2, H3, Img, P, Section, Span };
+export { A, Button, Container, Flexbox, Grid, H1, H2, H3, Img, P, Section, Span };

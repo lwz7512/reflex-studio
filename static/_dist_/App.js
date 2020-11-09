@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "../web_modules/react.js";
 import {
+  A,
   Section,
   Container,
   Grid,
@@ -13,6 +14,7 @@ import {
   Span
 } from "../web_modules/@reflexjs/ui.js";
 import {Ul, Li} from "../web_modules/@reflexjs/components.js";
+import {GitHubLogoIcon, AvatarIcon, PersonIcon} from "../web_modules/@modulz/radix-icons.js";
 import FileSaver from "../web_modules/file-saver.js";
 import logo from "./Reflex-Studio.png.proxy.js";
 import {Card, ColorOptions, ThemePreviewer} from "./Studio.js";
@@ -61,8 +63,25 @@ function App() {
   }, "Dev Experience Matters!"), /* @__PURE__ */ React.createElement(P, {
     fontSize: "1rem",
     width: "200",
-    textAlign: "center"
-  }, "@RCL"), /* @__PURE__ */ React.createElement(Ul, {
+    display: "flex",
+    justifyContent: "center"
+  }, /* @__PURE__ */ React.createElement(A, {
+    href: "http://wenzhi.me",
+    target: "_blank",
+    ml: "4"
+  }, /* @__PURE__ */ React.createElement(AvatarIcon, {
+    width: "20",
+    height: "20",
+    color: "#333"
+  })), /* @__PURE__ */ React.createElement(A, {
+    href: "https://github.com/lwz7512/reflex-studio",
+    target: "_blank",
+    ml: "4"
+  }, /* @__PURE__ */ React.createElement(GitHubLogoIcon, {
+    width: "20",
+    height: "20",
+    color: "#333"
+  }))), /* @__PURE__ */ React.createElement(Ul, {
     paddingInlineStart: "10"
   }, /* @__PURE__ */ React.createElement(Li, null, "Step 1: Choose primary color"), /* @__PURE__ */ React.createElement(Li, null, "Step 2: Choose theme type"), /* @__PURE__ */ React.createElement(Li, null, "Step 3: Download theme zip file"), /* @__PURE__ */ React.createElement(Li, null, "Step 4: Extract theme zip file"), /* @__PURE__ */ React.createElement(Li, null, "Step 5: Enter theme folder"), /* @__PURE__ */ React.createElement(Li, null, "Step 6: Install dependency"), /* @__PURE__ */ React.createElement(Li, null, "Step 7: Start website with yarn")), /* @__PURE__ */ React.createElement(P, {
     fontSize: "sm",

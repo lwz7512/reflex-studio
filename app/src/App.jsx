@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Section, Container, Grid, Flexbox, H1, H2, H3, P, Button, Img, Span,
+  A, Section, Container, Grid, Flexbox, H1, H2, H3, P, Button, Img, Span,
 } from "@reflexjs/ui"
 import { Ul, Li } from '@reflexjs/components';
+import { GitHubLogoIcon, AvatarIcon, PersonIcon } from '@modulz/radix-icons'
+
 import FileSaver from 'file-saver';
 
 import logo from './Reflex-Studio.png';
@@ -55,7 +57,14 @@ function App() {
             <P fontSize="md|l" mt="6" color="#666" w="80%" textAlign="center">
               Dev Experience Matters!
             </P>
-            <P fontSize="1rem" width="200" textAlign="center" >@RCL</P>
+            <P fontSize="1rem" width="200" display="flex" justifyContent="center" >
+              <A href="http://wenzhi.me" target="_blank" ml="4">
+                <AvatarIcon width="20" height="20" color="#333" />
+              </A>
+              <A href="https://github.com/lwz7512/reflex-studio" target="_blank" ml="4" >
+                <GitHubLogoIcon width="20" height="20" color="#333" />
+              </A>
+            </P>
             {/* use guide */}
             <Ul paddingInlineStart="10">
               <Li>Step 1: Choose primary color</Li>

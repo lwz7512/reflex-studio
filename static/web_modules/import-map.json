@@ -1,5 +1,6 @@
 {
   "imports": {
+    "@modulz/radix-icons": "./@modulz/radix-icons.js",
     "@reflexjs/components": "./@reflexjs/components.js",
     "@reflexjs/preset-base": "./@reflexjs/preset-base.js",
     "@reflexjs/ui": "./@reflexjs/ui.js",
