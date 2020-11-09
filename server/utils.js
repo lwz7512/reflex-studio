@@ -56,15 +56,17 @@ Utils.zipBufferGen = (themeFolder, params) => {
   const walkTree = function(tree, zipRoot){
     // create folder first
     // console.log(`got directory: ${tree.path}`)
-    zipRoot.folder(tree.path.substr(12))
+    let relaPathAfterStarers = tree.path.substr(tree.path.indexOf('starters')+9)
+    zipRoot.folder(relaPathAfterStarers)
 
     let children = tree.children
     children.forEach(child => {
       // write normal file
+      let childPathAfterStarers = child.path.substr(child.path.indexOf('starters')+9)
       if(child.type == 'file' && child.name != 'theme.js'){
         // console.log(`got file: ${child.path}`)
         let data = fs.readFileSync(child.path)
-        zipRoot.file(child.path.substr(12), data) // create file in zip
+        zipRoot.file(childPathAfterStarers, data) // create file in zip
       }
       // replace theme colors in memory for theme.js
       if(child.name == 'theme.js'){
@@ -80,7 +82,7 @@ Utils.zipBufferGen = (themeFolder, params) => {
             lines[i] = `    primaryHover: "${newPrimaryHover}",`
           }
         })
-        zipRoot.file(child.path.substr(12), lines.join('\n')) // create theme.js in zip
+        zipRoot.file(childPathAfterStarers, lines.join('\n')) // create theme.js in zip
       }
       // iterate constantly...
       if(child.type == 'directory' && child.name != 'node_modules' && child.name != 'public'){

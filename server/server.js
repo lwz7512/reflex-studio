@@ -36,12 +36,13 @@ app.post('/reflexgen.zip', (req, res) => {
     });
 })
 
+// JUST FOR TEST
 app.get('/viewstarter', (req, res) => {
   let themeFolder = 'reflex-starter-acdm'
   if(req.params.starter) themeFolder = req.params.starter
-  // console.log('>>> read the starter folder: '+themeFolder)
-  const tree = dirTree(`../starters/${themeFolder}`);
-  res.json(tree) // JUST FOR TEST
+  const folderPath = path.join(__dirname, `../starters/${themeFolder}`)
+  const tree = dirTree(folderPath);
+  res.json(tree)
 })
 
 app.get('/reflexgen.zip', (req, res) => {
@@ -67,5 +68,5 @@ app.get('/hello', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Reflex Studio App listening at http://localhost:${port}`)
 })
